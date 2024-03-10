@@ -7,6 +7,7 @@ package frc.robot;
 import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
+import com.pathplanner.lib.auto.NamedCommands;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -57,14 +58,6 @@ public class RobotContainer {
   private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
   private final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
   private final Telemetry logger = new Telemetry(MaxSpeed);
-
-  // build auto path commands
-  /*NamedCommands.registerCommand(
-    "Score",
-    Commands.sequence(
-        m_blasterOutSpeedUpAuto1,
-        Commands.parallel(m_blasterLaunch1, m_IntakeBlasterFeedAuto1)));*/
-
 
   private void configureBindings() {
     drivetrain.setDefaultCommand( // Drivetrain will execute this command periodically
@@ -153,8 +146,18 @@ public class RobotContainer {
                 Commands.run(m_intakeSubsystem::IntakeOut, m_intakeSubsystem)));
   }
 
+  private void configureAutoCommands(){
+     // build auto path commands
+  NamedCommands.registerCommand(
+    "Score",
+    Commands.sequence(
+        m_blasterOutSpeedUpAuto1,
+        Commands.parallel(m_blasterLaunch1, m_IntakeBlasterFeedAuto1)));
+  }
+
   public RobotContainer() {
     configureBindings();
+    configureAutoCommands();
   }
 
   public Command getAutonomousCommand() {
