@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 2,
-      "y": 2
+      "x": 1.285153447499878,
+      "y": 5.493438956802725
     },
     "rotation": 0
   },
@@ -12,15 +12,9 @@
     "data": {
       "commands": [
         {
-          "type": "named",
-          "data": {
-            "name": "Score"
-          }
-        },
-        {
           "type": "path",
           "data": {
-            "pathName": "Example Path"
+            "pathName": "BlueCenterPath"
           }
         }
       ]

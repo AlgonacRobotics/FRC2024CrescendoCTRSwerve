@@ -8,10 +8,13 @@ import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
 import com.pathplanner.lib.auto.NamedCommands;
+import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -49,6 +52,8 @@ public class RobotContainer {
   private final BlasterOutSpeedUpAuto m_blasterOutSpeedUpAuto1 = new BlasterOutSpeedUpAuto(2000);
   private final BlasterOutSpeedUpAuto m_blasterLaunch1 = new BlasterOutSpeedUpAuto(1500);
   private final IntakeBlasterFeedAuto m_IntakeBlasterFeedAuto1 = new IntakeBlasterFeedAuto(1500);
+
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
 
 
   private final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
@@ -153,6 +158,20 @@ public class RobotContainer {
     Commands.sequence(
         m_blasterOutSpeedUpAuto1,
         Commands.parallel(m_blasterLaunch1, m_IntakeBlasterFeedAuto1)));
+
+    //add commands to auto chooser
+    m_chooser.setDefaultOption("Do Nothing", new InstantCommand());
+
+     /************ Blue Center Auto Path ************
+     *
+     * The path scores in the center position of the speaker then drives
+     *
+     */
+    Command blueCenterAuto = new PathPlannerAuto("BlueCenterAuto");
+    m_chooser.addOption("Blue Center Auto", blueCenterAuto);
+
+    
+    SmartDashboard.putData("Auto choices:", m_chooser);
   }
 
   public RobotContainer() {
@@ -161,6 +180,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return Commands.print("No autonomous command configured");
+    return m_chooser.getSelected();
   }
 }
