@@ -2,19 +2,25 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.285153447499878,
-      "y": 5.493438956802725
+      "x": 0.7502118262381892,
+      "y": 4.402981036538514
     },
-    "rotation": 0
+    "rotation": -60.70291004013374
   },
   "command": {
     "type": "sequential",
     "data": {
       "commands": [
         {
+          "type": "named",
+          "data": {
+            "name": "Score"
+          }
+        },
+        {
           "type": "path",
           "data": {
-            "pathName": "BlueCenterPath"
+            "pathName": "BlueSourcePath"
           }
         }
       ]

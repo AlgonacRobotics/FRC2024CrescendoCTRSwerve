@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 15.821163271399223,
-      "y": 6.686770265771108
+      "x": 0.6782004541452696,
+      "y": 6.707344943511942
     },
-    "rotation": 120.11373315098245
+    "rotation": 61.26020470831205
   },
   "command": {
     "type": "sequential",
@@ -15,6 +15,12 @@
           "type": "named",
           "data": {
             "name": "Score"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "BlueAmpPath"
           }
         }
       ]

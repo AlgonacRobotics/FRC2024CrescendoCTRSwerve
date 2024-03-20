@@ -35,7 +35,7 @@ public class RobotContainer {
 
   /* Setting up bindings for necessary control of the swerve drive platform */
   private final CommandXboxController joystick = new CommandXboxController(0); // My joystick
-  private final CommandSwerveDrivetrain drivetrain = TunerConstants.DriveTrain; // My drivetrain
+  public final CommandSwerveDrivetrain drivetrain = TunerConstants.DriveTrain; // My drivetrain
   private final CommandXboxController m_operatorStick = new CommandXboxController(1); // My joystick
 
   // Subsystems
@@ -127,6 +127,18 @@ public class RobotContainer {
             new InstantCommand(
                 () -> m_elbowSubsystem.setTargetPosition(Constants.Arm.kIntakePosition)));
 
+      //driver control of elbow climb/down position - a button
+    joystick.a()
+        .onTrue(
+            new InstantCommand(
+                () -> m_elbowSubsystem.setTargetPosition(Constants.Arm.kIntakePosition)));
+
+      //driver control of elbow up position - y button
+    joystick.y()
+        .onTrue(
+            new InstantCommand(
+                () -> m_elbowSubsystem.setTargetPosition(Constants.Arm.kScoringPosition)));
+
     // elbow collect - b button
     m_operatorStick.b()
         .onTrue(
@@ -158,17 +170,94 @@ public class RobotContainer {
     Commands.sequence(
         m_blasterOutSpeedUpAuto1,
         Commands.parallel(m_blasterLaunch1, m_IntakeBlasterFeedAuto1)));
+        
+   NamedCommands.registerCommand(
+    "IntakeIn",
+        new RunCommand(
+                () -> m_intakeSubsystem.setPower(Constants.Intake.kIntakePowerIn),
+                m_intakeSubsystem));
+
+NamedCommands.registerCommand(
+    "IntakeRetract",
+        new RunCommand(
+                () -> m_intakeSubsystem.retract(),
+                m_intakeSubsystem));
+
+  NamedCommands.registerCommand(
+    "IntakeStop",
+    new RunCommand(
+                () -> m_intakeSubsystem.setPower(0),
+                m_intakeSubsystem));
+
+  NamedCommands.registerCommand(
+    "IntakeDown",
+    new InstantCommand(
+                () -> m_elbowSubsystem.setTargetPosition(Constants.Arm.kIntakePosition)));
+ 
+    NamedCommands.registerCommand(
+    "IntakeUp",
+    new InstantCommand(
+                () -> m_elbowSubsystem.setTargetPosition(Constants.Arm.kScoringPosition))); 
 
     //add commands to auto chooser
     m_chooser.setDefaultOption("Do Nothing", new InstantCommand());
 
-     /************ Blue Center Auto Path ************
+     /************ Center Exit Start Auto Path ************
      *
      * The path scores in the center position of the speaker then drives
      *
      */
-    Command blueCenterAuto = new PathPlannerAuto("BlueCenterAuto");
-    m_chooser.addOption("Blue Center Auto", blueCenterAuto);
+    Command centerExitStartAuto = new PathPlannerAuto("CenterExitStartAuto");
+    m_chooser.addOption("Center Exit Start Auto", centerExitStartAuto);
+
+     /************ Amp Exit Start Auto Path ************
+     *
+     * starts in Amp position of the speaker, then drives
+     *
+     */
+    Command ampExitStartAuto = new PathPlannerAuto("AmpExitStartAuto");
+    m_chooser.addOption("Amp Exit Start Auto", ampExitStartAuto);
+
+    /************ Source Exit Start Auto Path ************
+     *
+     * starts in source position of the speaker, then drives
+     *
+     */
+    Command sourceExitStartAuto = new PathPlannerAuto("SourceExitStartAuto");
+    m_chooser.addOption("Source Exit Start Auto", sourceExitStartAuto);
+
+    /************ Center Shoot Only Auto Path ************
+     *
+     * The path scores in the center position of the speaker then drives
+     *
+     */
+    Command centerShootAuto = new PathPlannerAuto("CenterShootAuto");
+    m_chooser.addOption("Center Shoot Only Auto", centerShootAuto);
+
+     /************ Amp Shoot Only Auto Path ************
+     *
+     * starts in Amp position of the speaker, then drives
+     *
+     */
+    Command ampShootAuto = new PathPlannerAuto("AmpShootAuto");
+    m_chooser.addOption("Amp Shoot Only Auto", ampShootAuto);
+
+    /************ Source Shoot Only Auto Path ************
+     *
+     * starts in source position of the speaker, then drives
+     *
+     */
+    Command sourceShootAuto = new PathPlannerAuto("SourceShootAuto");
+    m_chooser.addOption("Source Shoot Only Auto", sourceShootAuto);
+
+    /************ Center Double Auto Path ************
+     *
+     * The path scores in the center position of the speaker then drives
+     *
+     */
+    Command centerDoubleAuto = new PathPlannerAuto("CenterDoubleAuto");
+    m_chooser.addOption("Center Double Auto", centerDoubleAuto);
+
 
     
     SmartDashboard.putData("Auto choices:", m_chooser);

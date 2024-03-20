@@ -35,7 +35,7 @@ public final class Constants {
     public static final boolean kArmInverted = true;
     public static final int kCurrentLimit = 40;
 
-    public static final double kSoftLimitReverse = -2.2;
+  public static final double kSoftLimitReverse = -3.2;
     public static final double kSoftLimitForward = 0.0;
 
     public static final double kArmGearRatio = (1.0 / 25.0) * (28.0 / 50.0) * (16.0 / 64.0);
@@ -56,7 +56,7 @@ public final class Constants {
 
     public static final double kHomePosition = 0.0;
     public static final double kScoringPosition = 0.0;
-    public static final double kIntakePosition = -2.2; // was -1.17
+    public static final double kIntakePosition = -3.2; // was -1.17, then -2.2
   }
 
   public static final class Intake {

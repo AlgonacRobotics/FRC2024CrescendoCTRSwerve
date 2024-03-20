@@ -17,11 +17,13 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_robotContainer = new RobotContainer();
+
+    m_robotContainer.drivetrain.getDaqThread().setThreadPriority(99);
   }
 
   @Override
   public void robotPeriodic() {
-    CommandScheduler.getInstance().run(); 
+    CommandScheduler.getInstance().run();  
   }
 
   @Override
