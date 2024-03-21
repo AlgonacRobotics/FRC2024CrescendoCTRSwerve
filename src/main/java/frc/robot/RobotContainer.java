@@ -258,6 +258,14 @@ NamedCommands.registerCommand(
     Command centerDoubleAuto = new PathPlannerAuto("CenterDoubleAuto");
     m_chooser.addOption("Center Double Auto", centerDoubleAuto);
 
+    /************ Source Double Auto Path ************
+     *
+     * The path scores in the center position of the speaker then drives
+     *
+     */
+    Command sourceDoubleAuto = new PathPlannerAuto("SourceDoubleAuto");
+    m_chooser.addOption("Source Double Auto", sourceDoubleAuto);
+
 
     
     SmartDashboard.putData("Auto choices:", m_chooser);
