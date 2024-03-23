@@ -4,12 +4,28 @@
     {
       "anchor": {
         "x": 1.2745940876497153,
-        "y": 5.53
+        "y": 5.594556573728532
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.6125810580438906,
-        "y": 5.53
+        "x": 1.481799886676699,
+        "y": 7.1239327094038805
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 1.402864344190229,
+        "y": 6.906859967566088
+      },
+      "prevControl": {
+        "x": 1.2667976146377842,
+        "y": 6.689153200282179
+      },
+      "nextControl": {
+        "x": 1.4521990582442725,
+        "y": 6.985795510052557
       },
       "isLocked": false,
       "linkedName": null
@@ -17,11 +33,11 @@
     {
       "anchor": {
         "x": 2.8,
-        "y": 5.53
+        "y": 7.015396338484984
       },
       "prevControl": {
-        "x": 2.1149879816000325,
-        "y": 5.53
+        "x": 1.8823743185947905,
+        "y": 6.906859967566088
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,22 +48,22 @@
   "constraintZones": [
     {
       "name": "New Constraints Zone",
-      "minWaypointRelativePos": 0.5,
-      "maxWaypointRelativePos": 1.0,
+      "minWaypointRelativePos": 1.2,
+      "maxWaypointRelativePos": 2.0,
       "constraints": {
         "maxVelocity": 2.0,
         "maxAcceleration": 2.0,
-        "maxAngularVelocity": 561.96,
-        "maxAngularAcceleration": 2066.2
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0
       }
     }
   ],
   "eventMarkers": [
     {
       "name": "IntakeIn",
-      "waypointRelativePos": 0.5,
+      "waypointRelativePos": 1.75,
       "command": {
-        "type": "sequential",
+        "type": "parallel",
         "data": {
           "commands": [
             {
@@ -62,9 +78,9 @@
     },
     {
       "name": "IntakeStop",
-      "waypointRelativePos": 1.0,
+      "waypointRelativePos": 2.0,
       "command": {
-        "type": "sequential",
+        "type": "parallel",
         "data": {
           "commands": [
             {
@@ -81,8 +97,8 @@
   "globalConstraints": {
     "maxVelocity": 1.0,
     "maxAcceleration": 1.0,
-    "maxAngularVelocity": 561.96,
-    "maxAngularAcceleration": 2066.2
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
   },
   "goalEndState": {
     "velocity": 0,
