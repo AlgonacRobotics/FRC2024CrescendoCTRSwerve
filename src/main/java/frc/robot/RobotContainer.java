@@ -44,14 +44,14 @@ public class RobotContainer {
   public static final BlasterSubsystem m_blasterSubsystem = new BlasterSubsystem();
 
   // commands
-  private final BlasterOutSpeedUpAuto m_blasterOutSpeedUpAuto = new BlasterOutSpeedUpAuto(700);
-  private final BlasterOutSpeedUpAuto m_blasterLaunch = new BlasterOutSpeedUpAuto(700); // was 1500
+  private final BlasterOutSpeedUpAuto m_blasterOutSpeedUpAuto = new BlasterOutSpeedUpAuto(1000);
+  private final BlasterOutSpeedUpAuto m_blasterLaunch = new BlasterOutSpeedUpAuto(1000); // was 1500
   private final IntakeBlasterFeedAuto m_IntakeBlasterFeedAuto =
-      new IntakeBlasterFeedAuto(700); // was 1500
+      new IntakeBlasterFeedAuto(1000); // was 1500
 
-  private final BlasterOutSpeedUpAuto m_blasterOutSpeedUpAuto1 = new BlasterOutSpeedUpAuto(2000);
-  private final BlasterOutSpeedUpAuto m_blasterLaunch1 = new BlasterOutSpeedUpAuto(1500);
-  private final IntakeBlasterFeedAuto m_IntakeBlasterFeedAuto1 = new IntakeBlasterFeedAuto(1500);
+  private final BlasterOutSpeedUpAuto m_blasterOutSpeedUpAuto1 = new BlasterOutSpeedUpAuto(1000);
+  private final BlasterOutSpeedUpAuto m_blasterLaunch1 = new BlasterOutSpeedUpAuto(1000);
+  private final IntakeBlasterFeedAuto m_IntakeBlasterFeedAuto1 = new IntakeBlasterFeedAuto(1000);
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -200,23 +200,23 @@ NamedCommands.registerCommand(
                 () -> m_elbowSubsystem.setTargetPosition(Constants.Arm.kScoringPosition))); 
 
     //add commands to auto chooser
-    m_chooser.setDefaultOption("Do Nothing", new InstantCommand());
+   // m_chooser.setDefaultOption("Do nothing", new InstantCommand());
 
      /************ Center Exit Start Auto Path ************
      *
      * The path scores in the center position of the speaker then drives
      *
      */
-    Command centerExitStartAuto = new PathPlannerAuto("CenterExitStartAuto");
-    m_chooser.addOption("Center Exit Start Auto", centerExitStartAuto);
+    //Command centerExitStartAuto = new PathPlannerAuto("CenterExitStartAuto");
+    //m_chooser.addOption("Center Exit Start Auto", centerExitStartAuto);
 
      /************ Amp Exit Start Auto Path ************
      *
      * starts in Amp position of the speaker, then drives
      *
      */
-    Command ampExitStartAuto = new PathPlannerAuto("AmpExitStartAuto");
-    m_chooser.addOption("Amp Exit Start Auto", ampExitStartAuto);
+    //Command ampExitStartAuto = new PathPlannerAuto("AmpExitStartAuto");
+    //m_chooser.addOption("Amp Exit Start Auto", ampExitStartAuto);
 
     /************ Source Exit Start Auto Path ************
      *
@@ -232,7 +232,7 @@ NamedCommands.registerCommand(
      *
      */
     Command centerShootAuto = new PathPlannerAuto("CenterShootAuto");
-    m_chooser.addOption("Center Shoot Only Auto", centerShootAuto);
+    m_chooser.setDefaultOption("Center Shoot Only Auto", centerShootAuto);
 
      /************ Amp Shoot Only Auto Path ************
      *
@@ -298,3 +298,4 @@ NamedCommands.registerCommand(
     return m_chooser.getSelected();
   }
 }
+ 

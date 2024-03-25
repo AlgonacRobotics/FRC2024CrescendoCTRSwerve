@@ -24,6 +24,12 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "BlueCenterDoublePath1"
@@ -39,6 +45,12 @@
           "type": "path",
           "data": {
             "pathName": "BlueCenterDoublePath2"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
           }
         },
         {
