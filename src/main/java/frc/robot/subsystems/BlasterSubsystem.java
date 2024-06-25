@@ -22,6 +22,9 @@ public class BlasterSubsystem extends SubsystemBase {
     blasterDrive1.restoreFactoryDefaults();
     blasterDrive2.restoreFactoryDefaults();
 
+    //blasterDrive1.setSmartCurrentLimit(Constants.Blaster.kCurrentLimit);
+   // blasterDrive2.setSmartCurrentLimit(Constants.Blaster.kCurrentLimit);
+
     blasterDrive2.follow(blasterDrive1, true);
   }
 

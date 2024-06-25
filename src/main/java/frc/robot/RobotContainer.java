@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+//import frc.robot.commands.LimelightDrive;
 //import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.BlasterCommands.BlasterOutSpeedUpAuto;
 import frc.robot.commands.IntakeCommands.IntakeBlasterFeedAuto;
@@ -53,6 +54,8 @@ public class RobotContainer {
   private final BlasterOutSpeedUpAuto m_blasterLaunch1 = new BlasterOutSpeedUpAuto(1000);
   private final IntakeBlasterFeedAuto m_IntakeBlasterFeedAuto1 = new IntakeBlasterFeedAuto(1000);
 
+    //private final LimelightDrive m_LimelightDrive = new LimelightDrive();
+
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
 
@@ -72,9 +75,9 @@ public class RobotContainer {
             .withRotationalRate(-joystick.getRightX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
         ));
 
-    joystick.a().whileTrue(drivetrain.applyRequest(() -> brake));
-    joystick.b().whileTrue(drivetrain
-        .applyRequest(() -> point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
+    joystick.x().whileTrue(drivetrain.applyRequest(() -> brake));
+    //joystick.b().whileTrue(drivetrain
+        //.applyRequest(() -> point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
 
     // reset the field-centric heading on left bumper press
     joystick.leftBumper().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
@@ -138,6 +141,24 @@ public class RobotContainer {
         .onTrue(
             new InstantCommand(
                 () -> m_elbowSubsystem.setTargetPosition(Constants.Arm.kScoringPosition)));
+
+    // drive to limelight image
+
+    //joystick.rightBumper()
+        //.whileTrue(m_LimelightDrive);
+
+  /*   joystick.rightBumper()
+        .whileTrue(
+            {
+    var lastResult = LimelightHelpers.getLatestResults("limelight").targetingResults;
+
+    Pose2d llPose = lastResult.getBotPose2d_wpiBlue();
+
+    if (lastResult.valid) {
+      m_robotContainer.drivetrain.addVisionMeasurement(llPose, Timer.getFPGATimestamp());
+     }
+    }
+        );*/
 
     // elbow collect - b button
     m_operatorStick.b()
